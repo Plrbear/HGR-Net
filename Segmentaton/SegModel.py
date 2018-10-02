@@ -1,3 +1,8 @@
+from sklearn.feature_extraction import image
+import os
+import numpy as np
+from PIL import Image
+import random
 
 from keras.layers import Dense, Dropout, Activation, \
                          Flatten, Convolution2D, MaxPooling2D, \
@@ -54,11 +59,11 @@ class SegModel(object):
             return Res_unit
 
         #-------------------Pyramid Dilated Convolution--------------------------------
-        def PDC(self,input_layer):
+        def ASPP(self,input_layer):
             l = BatchNormalization(axis=-1)(input_layer)
             l = self.relu(l)
             conv1 = l
-
+            dconv_filters=16
             a1 = Conv2D(dconv_filters, 1, activation = 'relu', padding = 'same', dilation_rate = 1)(conv1)
             a2 = Conv2D(dconv_filters, 3, activation = 'relu', padding = 'same', dilation_rate = 3)(conv1)
             a3 = Conv2D(dconv_filters, 3, activation = 'relu', padding = 'same', dilation_rate = 6)(conv1)
@@ -81,7 +86,7 @@ class SegModel(object):
             i = self.Res_Group(64,3,2)(i) 
         #---------------------------------------
             i = self.Res_Group(128,3,2)(i) 
-            out_pdc2 = self.PDC(i)
+            out_pdc2 = self.ASPP(i)
         #---------------------------------------
 
         #-----------------------decoder----------------
@@ -94,9 +99,6 @@ class SegModel(object):
 
 
             model = Model(inputs=inp, outputs=conv_f )
-            # adam=optimizers.Adam(lr=0.001, beta_1=0.9, beta_2=0.999, decay=0.0)
-            # model.compile(loss='binary_crossentropy',optimizer = adam,metrics=['accuracy'])
+
             self.model=model
 
-
-     
