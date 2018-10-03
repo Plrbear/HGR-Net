@@ -51,7 +51,7 @@ def train(opt):
 
     
     #####Compile mode####
-    RecM=RecModel(input_size)
+    RecM=RecModel(input_size,opt.num_class)
     model=RecM.model_F
     _adam=optimizers.Adam(lr=opt.lr, beta_1=0.9, beta_2=0.999, decay=0.0)
     model.compile(loss='binary_crossentropy',optimizer = _adam,metrics=['accuracy'])
@@ -87,6 +87,8 @@ if __name__=='__main__':
     parser.add_argument('--ch', type=int, default=3)
     parser.add_argument('--num_val', type=int, default=3)
     parser.add_argument('--num_img', type=int, default=3)
+    parser.add_argument('--num_class', type=int, default=3)
+
 
 
     opt = parser.parse_args()
