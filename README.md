@@ -1,6 +1,6 @@
 # HGR-Net
 ## Overview
-Paper:https://arxiv.org/abs/1806.05653
+Paper:https://arxiv.org/abs/1806.05653  
 [Demo](http://www.youtu.be/gxnTEENN7Ik)
 ### Datasets
 [Download links](http://www.ouhands.oulu.fi/)
