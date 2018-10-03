@@ -1,5 +1,4 @@
 # HGR-Net
-# Multi-Level Contextual Network for Biomedical Image Segmentation
 ## Overview
 Paper: https://arxiv.org/abs/1810.00327
 ### Datasets
