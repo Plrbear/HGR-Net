@@ -1,3 +1,3 @@
 # HGR-Net
 
-The complete code will be released soon
+ a tutorial will be available soon
