@@ -1,7 +1,7 @@
 # HGR-Net
 ## Overview
 Paper: https://arxiv.org/abs/1810.00327  
-[Demo](youtu.be/gxnTEENN7Ik)
+[Demo](http://www.youtu.be/gxnTEENN7Ik)
 ### Datasets
 [Download links](http://www.ouhands.oulu.fi/)
 
