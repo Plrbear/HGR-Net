@@ -1,3 +1,6 @@
+#source https://github.com/aurora95/Keras-FCN/blob/master/utils/BilinearUpSampling.py
+
+
 import keras.backend as K
 import tensorflow as tf
 from keras.layers import *
