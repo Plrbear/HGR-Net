@@ -1,30 +1,28 @@
 
 
+
 from keras.layers import Dense, Dropout, Activation, \
                          Flatten, Convolution2D, MaxPooling2D, \
                          BatchNormalization, Conv2D, Input,merge,AveragePooling2D,concatenate
 from keras.models import Model
 from keras import optimizers
-from segmentation import SegModel
+from Segmentation.Seg_Model import SegModel
 
 
 class RecModel(object):
         def __init__(self, input_size):
             self.input_size=input_size
             self._build_model()
-            
 
-
-
-        def _build_model(self,input_size):
-                SegM=SegModel(input_size)
+        def _build_model(self):
+                SegM=SegModel(self.input_size)
                 Smodel=SegM.model
-                model.load_weights('Seg_weight.hdf5')
-                l=len(model.layers)
-                for layer in model.layers[:l]:
+                Smodel.load_weights('Seg_weight.hdf5')
+                l=len(Smodel.layers)
+                for layer in Smodel.layers[:l]:
                     layer.trainable = False
 
-                inp = Input(shape=input_size)
+                inp = Input(shape=self.input_size)
                 inp_stream1=Smodel.input
                 inp_stram2 = Smodel.output
 
@@ -66,11 +64,10 @@ class RecModel(object):
                 f = Dropout(0.2)(f)
 
                 prediction = Dense(10, activation="softmax")(f)
-                model_final = Model(input = model.input, output = prediction)
+                model_final = Model(input = Smodel.input, output = prediction)
                                                     
 
 
                 self.model_F=model_final
 
 
-            
