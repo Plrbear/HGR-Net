@@ -63,7 +63,7 @@ class SegModel(object):
             l = BatchNormalization(axis=-1)(input_layer)
             l = self.relu(l)
             conv1 = l
-            dconv_filters=16
+            dconv_filters=32
             a1 = Conv2D(dconv_filters, 1, activation = 'relu', padding = 'same', dilation_rate = 1)(conv1)
             a2 = Conv2D(dconv_filters, 3, activation = 'relu', padding = 'same', dilation_rate = 3)(conv1)
             a3 = Conv2D(dconv_filters, 3, activation = 'relu', padding = 'same', dilation_rate = 6)(conv1)
@@ -90,15 +90,17 @@ class SegModel(object):
         #---------------------------------------
 
         #-----------------------decoder----------------
-
-
-            i_dec=BilinearUpSampling2D(size = (4,4))(out_pdc2 )
-            i_dec = Dropout(0.5)(i_dec)
+            i_dec = Dropout(0.15)(out_pdc2)
 
             conv_f = Conv2D(1,(1, 1), activation='sigmoid', padding='same')(i_dec)
 
+            i_dec=BilinearUpSampling2D(size = (4,4))(conv_f)
 
-            model = Model(inputs=inp, outputs=conv_f )
+
+
+            model = Model(inputs=inp, outputs=i_dec )
 
             self.model=model
+
+
 
