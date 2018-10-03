@@ -65,7 +65,7 @@ class RecModel(object):
 
                 f = Dropout(0.2)(f)
 
-                prediction = Dense(num_class, activation="softmax")(f)
+                prediction = Dense(self.num_class, activation="softmax")(f)
                 model_final = Model(input = Smodel.input, output = prediction)
                                                     
 
