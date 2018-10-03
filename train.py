@@ -9,10 +9,7 @@ from keras.preprocessing.image import ImageDataGenerator
 from keras.callbacks import ModelCheckpoint, LearningRateScheduler
 import argparse
 
-# class SegTrainer(object):
-#         def __init__(self,opt):
-#             self.opt=opt
-            
+       
 def train(opt):  
 
     input_size=(opt.row,opt.col,opt.ch)
@@ -50,12 +47,11 @@ def train(opt):
 
 
     
-    #####Compile mode####
+    #####Compile####
     RecM=RecModel(input_size,opt.num_class)
     model=RecM.model_F
     _adam=optimizers.Adam(lr=opt.lr, beta_1=0.9, beta_2=0.999, decay=0.0)
     model.compile(loss='binary_crossentropy',optimizer = _adam,metrics=['accuracy'])
-    ###################load data###########
 
     model_checkpoint = ModelCheckpoint(opt.chekp, monitor='val_acc',verbose=1, save_best_only=True)
 
