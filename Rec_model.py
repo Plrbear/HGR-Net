@@ -10,8 +10,10 @@ from Segmentation.Seg_Model import SegModel
 
 
 class RecModel(object):
-        def __init__(self, input_size):
+        def __init__(self, input_size,num_class):
             self.input_size=input_size
+            self.num_class=num_class
+
             self._build_model()
 
         def _build_model(self):
@@ -63,7 +65,7 @@ class RecModel(object):
 
                 f = Dropout(0.2)(f)
 
-                prediction = Dense(10, activation="softmax")(f)
+                prediction = Dense(num_class, activation="softmax")(f)
                 model_final = Model(input = Smodel.input, output = prediction)
                                                     
 
