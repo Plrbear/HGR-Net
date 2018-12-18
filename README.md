@@ -1,5 +1,5 @@
 # HGR-Net
-## Overview (The code will be updated...)
+## Overview 
 Paper:https://arxiv.org/abs/1806.05653  
 [Demo](http://www.youtu.be/gxnTEENN7Ik)
 ### Datasets
@@ -22,3 +22,4 @@ bash train.sh
 * Tensorflow
 * Keras >= 2.0
 * Python >= 2.7
+***(The code will be updated...)
